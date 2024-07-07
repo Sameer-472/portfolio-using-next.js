@@ -45,7 +45,7 @@ const WorkPage = () => {
 
   return (
     <motion.div
-      variants={contentContainerVariants}
+      // variants={contentContainerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{
@@ -55,7 +55,7 @@ const WorkPage = () => {
     >
       {isVisible && (
         <motion.div
-          variants={spotLightVariants}
+          // variants={spotLightVariants}
           initial="hidden"
           animate="visible"
           className="absolute flex -top-[300%] left-1/2 -translate-x-1/2 bottom-0 right-0 w-2/4 blur-3xl"
@@ -111,52 +111,27 @@ const WorkPage = () => {
         </motion.p>
       </div>
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-3 mt-10 gap-5 px-6 lg:px-32">
-        {workListData?.map((work, index) => (
-          <motion.div
-            variants={contentVariants}
-            key={index}
-            className={
-              index === 1 ||
-                index === 2 ||
-                index === 5 ||
-                index === 6 ||
-                index === 9
-                ? "col-span-1 lg:col-span-2"
-                : "col-span-1"
-            }
-          >
-            {/* <ImageCard
-              key={index}
-              data={work}
-              clickHandler={() => router.push(`/work/${work?.id}`)}
-            /> */}
+      <div className="w-100">
+        <motion.div
+          variants={contentVariants}
+          // key={index}
+          className="grid lg:grid-cols-2 gap-5  mt-10 space-x-3 px-6 w-100"
 
-          </motion.div>
-        ))}
-        <div className="flex flex-row space-x-10">
-          <div className="bg-[#1A1B1E] flex justify-between px-5 py-5 w-[470px]">
-            <div className="flex items-center flex-row mx-3">
-              <Image src={transviti} alt="transviti" className="rounded" />
-              <div className="mx-4">
-                <div className="font-display text-xl lg:text-xl leading-snug text-secondary font-extrabold mb-3 text-start">Front-end developer</div>
-                <div className="text-sm leading-relaxed tracking-normal font-semibold text-start">Feb-23 2-23 - Present</div>
+        >
+          {workListData?.map(({ companyName, designation, endDate, img, startDate, techStack , link }) => (
+            <div className=" bg-[#1A1B1E] flex justify-between px-5 py-5 border-primary/10 rounded-2xl hover:cursor-pointer">
+              <div className="flex items-center flex-row mx-3">
+                <Image width={64} height={64} src={img} alt="companyLogo" className="rounded" />
+                <div className="mx-4">
+                  <div className="font-display text-xl lg:text-xl leading-snug text-secondary font-extrabold mb-3 text-start">{designation} ,{companyName}</div>
+                  <div className="text-sm leading-relaxed tracking-normal font-semibold text-start">{startDate}-{endDate}</div>
+                </div>
+                {/* <div className="text-sm leading-relaxed tracking-normal font-semibold text-start">lorem40</div> */}
               </div>
+              <Image src={linkIcon} width={"24"} height={"24"} className="h-fit cursor-pointer" onClick={()=> console.log("clicked")} />
             </div>
-            <Image src={linkIcon} width={"24"} height={"24"} className="h-fit" />
-          </div>
-          <div className="bg-[#1A1B1E] flex justify-between px-5 py-5 w-[470px]">
-            <div className="flex items-center flex-row mx-3">
-              <Image src={transviti} alt="transviti" className="rounded" />
-              <div className="mx-4">
-                <div className="font-display text-xl lg:text-xl leading-snug text-secondary font-extrabold mb-3 text-start">Front-end developer</div>
-                <div className="text-sm leading-relaxed tracking-normal font-semibold text-start">Feb-23 2-23 - Present</div>
-              </div>
-            </div>
-            <Image src={linkIcon} width={"24"} height={"24"} className="h-fit" />
-          </div>
-        </div>
-
+          ))}
+        </motion.div>
       </div>
     </motion.div>
   );

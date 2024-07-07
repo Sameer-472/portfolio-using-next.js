@@ -84,6 +84,7 @@ const WorkPage = ({ params }) => {
 
   if (workData?.id === 0 || workData?.isLocked === true)
     router.push(`/not-found`);
+  
   else {
     return (
       <motion.div
